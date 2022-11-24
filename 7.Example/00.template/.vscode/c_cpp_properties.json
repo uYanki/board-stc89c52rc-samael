@@ -1,0 +1,25 @@
+{
+    "configurations": [
+        {
+            "name": "Main",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "C:/Keil_v5/C51/INC",
+                "C:/Keil_v5/C51/INC/**"
+            ],
+            "defines": [
+                "_DEBUG",
+                "UNICODE",
+                "_UNICODE",
+                "sbit=char",
+                "code=const",
+                "xdata=",
+                "interrupt=",
+                "bit=uint8_t",
+                "sfr=char"
+            ],
+            "intelliSenseMode": "${default}"
+        }
+    ],
+    "version": 4
+}

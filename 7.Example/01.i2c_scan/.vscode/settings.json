@@ -1,0 +1,5 @@
+{
+  "files.associations": {
+    "lib_uart.h": "c"
+  }
+}

@@ -1,0 +1,71 @@
+
+#include "lib_seg.h"
+
+// SCH: 74HC138(三八译码器) + 74HC245(DIR脚:方向 1:A->B 0:B->A) + 共阴数码码
+
+// 数码管动态显示原理: 对数码进行动态扫描, 即每次只亮1个数码管, 但因为发光管的余晖和人样视觉暂留的作用, 使人感觉好像所有数码管在同时亮
+
+// 共阴极数码管码表: (17 elems) 0 1 2 3 4 5 6 7 8 9 A b C d E F
+uint8_t code table[16] = {0x3f, 0x06, 0x5b, 0x4f, 0x66, 0x6d, 0x7d, 0x07, 0x7f, 0x6f, 0x77, 0x7c, 0x39, 0x5e, 0x79, 0x71};
+//
+
+/*
+数码管码表
+
+Refer: https://blog.csdn.net/OMGMac/article/details/117952397
+
+共阴不带小数点:{0x3f,0x06,0x5b,0x4f,0x66,0x6d,0x7d,0x07,0x7f,0x6f,0x77,0x7c,0x39,0x5e,0x79,0x71};
+共阴带小数点:{0xbf,0x86,0xdb,0xcf,0xe6,0xed,0xfd,0x87,0xff,0xef,0xf7,0xfc,0xb9,0xde,0xf9,0xf1};
+共阳不带小数点:{0xc0,0xf9,0xa4,0xb0,0x99,0x92,0x82,0xf8,0x80,0x90,0x88,0x83,0xc6,0xa1,0x86,0x8e};
+共阳带小数点:{0x40,0x79,0x24,0x30,0x19,0x12,0x02,0x78,0x00,0x10,0x08,0x03,0x46,0x21,0x06,0x0e};
+
+共阴=0xff-共阳
+共阴带小数点=共阴不带小数点+0x80
+共阳带小数点=共阳不带小数点-0x80
+
+*/
+
+void delay_ms(uint16_t ms) {
+    uint16_t i, j;
+    for (i = ms; i > 0; i--)
+        for (j = 110; j > 0; j--)
+            ;
+}
+
+void seg_set(long num, uint8_t base /*2~16进制*/) {
+    uint8_t i;
+    uint8_t neg;
+
+    if (base < 2) return;
+
+    if (num < 0) {
+        num = -num;
+        neg = 1;
+    }
+
+    for (i = 0; i < 8; ++i) {
+        // 段选
+        P2_2 = i & 1;
+        P2_3 = i & 2;
+        P2_4 = i & 4;
+        // 位选
+        P0 = table[num % base];
+        delay_ms(1);  // 暂留
+        P0 = 0x00;    // 消影
+        num /= base;
+        if (num == 0 & base != 2) break;
+    }
+
+    // 负号
+    if (neg == 1 && i < 7) {
+        ++i;
+        // 段选
+        P2_2 = i & 1;
+        P2_3 = i & 2;
+        P2_4 = i & 4;
+        // 位选
+        P0 = 1 << 6;
+        delay_ms(1);  // 暂留
+        P0 = 0x00;    // 消影
+    }
+}
