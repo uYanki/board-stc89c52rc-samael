@@ -22,7 +22,7 @@ typedef unsigned int   uint32_t;
 #define SPI_MOSI P3_4
 #define SPI_MISO P3_7
 #define SPI_SCLK P3_6
-#define SPI_CS P3_5
+#define SPI_CS   P3_5
 
 typedef struct spi {
     // sbit mosi, miso, sclk, cs;
@@ -31,15 +31,15 @@ typedef struct spi {
     uint8_t datasize;
 } spi_t;
 
-#define SPI_CPOL_LOW 0
-#define SPI_CPOL_HIGH 1
+#define SPI_CPOL_LOW   0
+#define SPI_CPOL_HIGH  1
 #define SPI_CPHA_1EDGE 0
 #define SPI_CPHA_2EDGE 1
 
 #define SPI_FIRSTBIT_MSB 0
 #define SPI_FIRSTBIT_LSB 1
 
-#define SPI_DATASIZE_8 8    // 8bit
+#define SPI_DATASIZE_8  8   // 8bit
 #define SPI_DATASIZE_16 16  // 16bit
 
 // void spi_delay() {}
