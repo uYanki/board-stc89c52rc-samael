@@ -1,0 +1,24 @@
+{
+    "files.associations": {
+        "*.H": "c",
+        "**/*.html": "html",
+        "*.py": "python",
+        "regx52.h": "c",
+        "REGX52.H": "cpp",
+        "reg52.h": "c",
+        "REG52.H": "cpp",
+        "intrins.h": "c",
+        "lib_lcd1602.h": "c",
+        "INTRINS.H": "cpp",
+        "lib_74hc595.h": "c",
+        "lib_seg.h": "c",
+        "lib_i2c.h": "c",
+        "lib_at24c02.h": "c",
+        "lib_spi.h": "c",
+        "lib_ds1302.h": "c",
+        "type_traits": "c",
+        "uart.h": "c",
+        "lib_uart.h": "c",
+        "cstdint": "c"
+    }
+}

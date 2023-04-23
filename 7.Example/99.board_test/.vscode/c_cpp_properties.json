@@ -3,20 +3,32 @@
         {
             "name": "Main",
             "includePath": [
-                "${workspaceFolder}/**",
-                "C:/Keil_v5/C51/INC",
-                "C:/Keil_v5/C51/INC/**"
+                "C:\\Keil_v5\\C51\\INC",
+                "e:\\board-stc89c52rc-samael\\7.Example\\99.board_test"
             ],
             "defines": [
-                "_DEBUG",
-                "UNICODE",
-                "_UNICODE",
-                "sbit=char",
-                "code=const",
+                "__C51__",
+                "__VSCODE_C51__",
+                "reentrant=",
+                "compact=",
+                "small=",
+                "large=",
+                "data=",
+                "idata=",
+                "pdata=",
+                "bdata=",
                 "xdata=",
+                "code=",
+                "bit=char",
+                "sbit=char",
+                "sfr=char",
+                "sfr16=int",
+                "sfr32=int",
                 "interrupt=",
-                "bit=uint8_t",
-                "sfr=char"
+                "using=",
+                "_at_=",
+                "_priority_=",
+                "_task_="
             ],
             "intelliSenseMode": "${default}"
         }
