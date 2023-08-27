@@ -24,6 +24,10 @@ void delay_10us(uint16_t ten_us) {
 
 void ired_handle(uint8_t recv) {
     // LED = ~LED;
+
+	  uart_sendhex(recv);
+		uart_sendline();
+	
     switch (recv) {
         // 1 4 7 亮
         case 0x0C: LED_R = 0; break;
